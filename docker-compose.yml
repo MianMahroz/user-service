@@ -1,0 +1,16 @@
+version: '2'
+services:
+  caam-eureka:
+    image: caam-eureka:latest
+    expose:
+    - "8761"
+  caam-user:
+    image: caam-user:latest
+    container_name: caam-user
+    ports:
+    - "8082:8082"
+    environment:
+      server.port: 8082
+      eureka.client.enabled: 'true'
+      eureka.host: eureka-server
+      eureka.instance.preferIpAddress: 'true'
